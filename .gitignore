@@ -1,0 +1,5 @@
+.vs
+*.slnx
+Algorithm/*.user
+Algorithm/*.filters
+Algorithm/*.vcxproj
