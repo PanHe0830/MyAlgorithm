@@ -25,8 +25,7 @@ void MyAlgorithm::InsertSort(int arr[], int nLength)
 	}
 }
 
-void MyAlgorithm::Merge(int a[], int left, int mid, int right) {
-    int* temp = new int[right - left + 1];                   //临时数组用于存储排序时的数
+void MyAlgorithm::Merge(int a[],int temp[], int left, int mid, int right) {
     int i = left;                                 //分成两块 i指向左边的数字 j指向右边的数字 
     int j = mid + 1;
     int k = 0;                                    //k用于存储数字到临时数组
@@ -45,21 +44,17 @@ void MyAlgorithm::Merge(int a[], int left, int mid, int right) {
 
     for (int m = left, n = 0; m <= right; m++, n++)//读取临时数组中的数
         a[m] = temp[n];
-
-	delete[] temp;                                 //释放临时数组的内存
-	temp = nullptr;
 }
 
-
-void MyAlgorithm::MergeSort(int a[], int left, int right) {
-    if (left == right)
+void MyAlgorithm::MergeSort(int a[],int temp[], int left, int right) {
+    if (left >= right)
         return;
 
-    int mid = (left + right) / 2;
+    int mid = left + (right - left) / 2; // 避免整数溢出
     //递归拆分成较小规模子序列排序 
-    MergeSort(a, left, mid);
-    MergeSort(a, mid + 1, right);
-    Merge(a, left, mid, right);      //合并较小规模问题解
+    MergeSort(a, temp, left, mid);
+    MergeSort(a, temp, mid + 1, right);
+    Merge(a, temp, left, mid, right);      //合并较小规模问题解
 }
 
 void MyAlgorithm::SelectSort(int arr[], int nLength)

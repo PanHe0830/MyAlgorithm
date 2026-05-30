@@ -18,8 +18,8 @@ public:
 	//============================================================
 
 	//============================================================
-	void Merge(int arr[], int left, int mid, int right);
-	void MergeSort(int a[], int left, int right);
+	void Merge(int arr[], int temp[], int left, int mid, int right);
+	void MergeSort(int a[], int temp[], int left, int right);
 	//============================================================
 
 	//============================================================
