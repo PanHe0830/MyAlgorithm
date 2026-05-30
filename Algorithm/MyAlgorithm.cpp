@@ -14,7 +14,7 @@ void MyAlgorithm::InsertSort(int arr[], int nLength)
 {
 	for (int i = 0; i < nLength; i++)
 	{
-		int key = arr[i];
+		int key = arr[i]; 
 		int j = i - 1;
 		while (j >= 0 && arr[j] > key)
 		{
@@ -45,6 +45,9 @@ void MyAlgorithm::Merge(int a[], int left, int mid, int right) {
 
     for (int m = left, n = 0; m <= right; m++, n++)//读取临时数组中的数
         a[m] = temp[n];
+
+	delete[] temp;                                 //释放临时数组的内存
+	temp = nullptr;
 }
 
 
@@ -57,4 +60,25 @@ void MyAlgorithm::MergeSort(int a[], int left, int right) {
     MergeSort(a, left, mid);
     MergeSort(a, mid + 1, right);
     Merge(a, left, mid, right);      //合并较小规模问题解
+}
+
+void MyAlgorithm::SelectSort(int arr[], int nLength)
+{
+    for (int i = 0; i < nLength - 1; i++)
+    {
+        int minIndex = i;
+        for (int j = i + 1;j<nLength;j++)
+        {
+            if (arr[j] < arr[minIndex])
+            {
+				minIndex = j;
+            }
+        }
+        if (minIndex != i)
+        {
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+		}
+    }
 }
