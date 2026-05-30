@@ -82,3 +82,23 @@ void MyAlgorithm::SelectSort(int arr[], int nLength)
 		}
     }
 }
+
+void MyAlgorithm::ShellSort(int arr[], int nLength)
+{
+	int gap = nLength / 2;
+    while (gap > 0)
+    {
+        for (int i = gap; i < nLength; i++)
+        {
+            int key = arr[i];
+            int j = i - gap;
+            while (j >= 0 && arr[j] > key)
+            {
+                arr[j + gap] = arr[j];
+                j -= gap;
+            }
+            arr[j + gap] = key;
+        }
+        gap = gap / 3;
+    }
+}
