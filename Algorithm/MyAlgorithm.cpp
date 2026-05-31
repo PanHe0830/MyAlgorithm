@@ -97,3 +97,28 @@ void MyAlgorithm::ShellSort(int arr[], int nLength)
         gap = gap / 3;
     }
 }
+
+void MyAlgorithm::QuickSort(int arr[], int left, int right)
+{
+    if (left >= right)
+        return;
+
+	int pivot = arr[left]; // 选择第一个元素作为基准
+    int l = left;
+	int r = right;
+
+    while (left < right)
+    {
+        while (left < right && arr[right] >= pivot)
+            right--;
+        if (left < right)
+			arr[left++] = arr[right]; // 将右边的元素移动到左边
+        while (left < right && arr[left] <= pivot)
+            left++;
+		if (left < right)
+            arr[right--] = arr[left]; // 将左边的元素移动到右边
+    }
+    arr[left] = pivot; // 将基准元素放到最终位置
+    QuickSort(arr, l, left - 1);
+    QuickSort(arr, left + 1, r);
+}
